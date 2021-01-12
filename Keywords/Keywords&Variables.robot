@@ -4,6 +4,10 @@ Library           Selenium2Library
 *** Variables ***
 ${HumanaEmail}    KChava@humana.com
 ${HumanaPassword}    sai2#dad
+${Meeting}        Meeting
+${Webinars}       Webinars
+${Training}       Training
+${New Hire}       New Hire
 
 *** Keywords ***
 Open Genesys
@@ -44,3 +48,30 @@ Microsoft Login
     Click Element    xpath=//*[@type='submit']
     Wait Until Element Is Visible    xpath=(//*[@class='entity-image available chat-presence ember-view'])[1]    50
     Capture Page Screenshot
+
+Change Status
+    [Arguments]    ${Status}    ${SubStatus}
+    Click Element    xpath=(//*[@class='entity-image available chat-presence ember-view'])[1]
+    Wait Until Element Is Visible    xpath=//*[@class='user-info']    10
+    sleep    2
+    Wait Until Keyword Succeeds    20s    0.5s    Click Element    xpath=//*[contains(text(),'${Status}')]
+    sleep    2
+    Wait Until Keyword Succeeds    20s    0.5s    Click Element    xpath=//*[contains(text(),'${SubStatus}')]
+    sleep    2
+    Capture Page Screenshot
+    Wait Until Page Contains Element    xpath=(//*[contains(@class,'presence-label-group')])[2]    10
+    ${Status Changed To}    Get Text    xpath=(//*[contains(@class,'presence-label-group')])[2]
+
+Re-Change Status
+    [Arguments]    ${OldStatus}    ${NewStatus}    ${NewSubStatus}
+    sleep    2
+    Wait Until Keyword Succeeds    20s    0.5s    Click Element    xpath=(//*[contains(text(),'${OldStatus}')])[1]
+    sleep    2
+    Wait Until Keyword Succeeds    20s    0.5s    Click Element    xpath=//*[contains(text(),'${NewStatus}')]
+    sleep    2
+    Wait Until Keyword Succeeds    20s    0.5s    Click Element    xpath=//*[contains(text(),'${NewSubStatus}')]
+    sleep    2
+    Capture Page Screenshot
+    Wait Until Page Contains Element    xpath=(//*[contains(@class,'presence-label-group')])[2]    10
+    sleep    2
+    ${Status Changed To}    Get Text    xpath=(//*[contains(@class,'presence-label-group')])[2]
