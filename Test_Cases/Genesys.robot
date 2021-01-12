@@ -1,6 +1,6 @@
 *** Settings ***
 Library           Selenium2Library
-Resource          Keywords/Keywords&Variables.robot
+Resource          ../Keywords/Keywords&Variables.robot
 
 *** Test Cases ***
 Genesys Login
