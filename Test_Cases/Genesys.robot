@@ -16,5 +16,6 @@ TC02_Genesys_Status_Change
     Change Organisation    ${New Org}
     Microsoft Login    ${HumanaEmail}    ${HumanaPassword}
     Change Status    ${Meeting}    ${Webinars}
-    Re-Change Status     ${Meeting}    ${Training}    ${New Hire}
+    Re-Change Status    ${Meeting}    ${Training}    ${New Hire}
     Close Browser
+    sleep    2
